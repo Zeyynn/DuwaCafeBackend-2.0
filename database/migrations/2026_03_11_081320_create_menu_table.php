@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('menu', function (Blueprint $table) {
             $table->id('menu_id');
             $table->String('menu_name');
+            $table->enum
             $table->String('menu_slug')->unique();
             $table->String('menu_description');
             $table->decimal('menu_price_cents');

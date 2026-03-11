@@ -5,14 +5,14 @@ namespace Modules\Menu\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Modules\Menu\Models\Menu;
-use Modules\Menu\app\Http\Requests\CreateMenuRequest;
-use Modules\Menu\app\Http\Requests\UpdateMenuRequest;
+use Modules\Menu\Http\Requests\CreateMenuRequest;
+use Modules\Menu\Http\Requests\UpdateMenuRequest;
 
 class MenuController extends Controller
 {
 
-    public function listing()
-    {
+    public function listing(array $args)
+    {   
         return Menu::query()
             ->when(isset($args['menu_name']), function ($query) use ($args) {
                 $query->where('menu_name', 'like', '%' . $args['menu_name'] . '%');
