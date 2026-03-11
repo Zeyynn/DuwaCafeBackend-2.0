@@ -5,6 +5,8 @@ namespace Modules\Menu\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Modules\Menu\Models\Menu;
+use Modules\Menu\app\Http\Requests\CreateMenuRequest;
+use Modules\Menu\app\Http\Requests\UpdateMenuRequest;
 
 class MenuController extends Controller
 {
@@ -23,7 +25,7 @@ class MenuController extends Controller
         return Menu::find($args['menu_id']);
     }
 
-    public function create(createMenuRequest $request)
+    public function create(CreateMenuRequest $request)
     {
         $menu = Menu::create($request->validated());
         return [
@@ -33,7 +35,7 @@ class MenuController extends Controller
         ];
     }
 
-    public function update(updateMenuRequest $request, $id)
+    public function update(UpdateMenuRequest $request, $id)
     {
         $menu = Menu::find($id);
         if (!$menu) {
