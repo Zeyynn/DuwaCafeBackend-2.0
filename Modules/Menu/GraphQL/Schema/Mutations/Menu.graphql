@@ -1,0 +1,16 @@
+extend type Mutation {
+    createMenu(input: CreateMenuInput!): Menu!
+    @field(resolver: "Modules\\Menu\\GraphQL\\Resolvers\\MenuMutator@createMenu")
+    updateMenu(menu_id: ID!, input: UpdateMenuInput!): Menu!
+    @field(resolver: "Modules\\Menu\\GraphQL\\Resolvers\\MenuMutator@updateMenu")
+    deleteMenu(menu_id: ID!): Boolean!
+    @field(resolver: "Modules\\Menu\\GraphQL\\Resolvers\\MenuMutator@deleteMenu")
+}
+
+input CreateMenuInput {
+    menu_name: String!
+    menu_slug: String!
+    menu_description: String!
+    menu_price_cents: Float!
+    menu_image: String
+}

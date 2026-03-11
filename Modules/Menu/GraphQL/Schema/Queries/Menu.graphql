@@ -1,0 +1,12 @@
+extend type Query {
+    menuListing(input: MenuListingInput!): [Menu!]!
+    @field(resolver: "Modules\\Menu\\GraphQL\\Resolvers\\MenuQuery@menuListing")
+    menuDetails(menu_id: ID!): Menu
+    @field(resolver: "Modules\\Menu\\GraphQL\\Resolvers\\MenuQuery@menuDetails")
+}
+
+input MenuListingInput {
+    page: Int
+    limit: Int
+    search: String
+}

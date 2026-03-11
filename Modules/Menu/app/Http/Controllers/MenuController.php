@@ -4,53 +4,66 @@ namespace Modules\Menu\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Modules\Menu\Models\Menu;
 
 class MenuController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+
+    public function listing()
     {
-        return view('menu::index');
+        return Menu::query()
+            ->when(isset($args['menu_name']), function ($query) use ($args) {
+                $query->where('menu_name', 'like', '%' . $args['menu_name'] . '%');
+            })
+            ->get();
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function show($id, array $args)
     {
-        return view('menu::create');
+        return Menu::find($args['menu_id']);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request) {}
-
-    /**
-     * Show the specified resource.
-     */
-    public function show($id)
+    public function create(createMenuRequest $request)
     {
-        return view('menu::show');
+        $menu = Menu::create($request->validated());
+        return [
+            'status' => true,
+            'message' => 'Menu created successfully',
+            'data' => $menu
+        ];
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit($id)
+    public function update(updateMenuRequest $request, $id)
     {
-        return view('menu::edit');
+        $menu = Menu::find($id);
+        if (!$menu) {
+            return[
+                'status' => false,
+                'message' => 'Menu not found'
+            ];  
+        }
+        $menu->update($request->validated());
+        return [
+            'status' => true,
+            'message' => 'Menu updated successfully',
+            'data' => $menu
+        ];
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, $id) {}
+    public function delete($id)
+    {
+        $menu = Menu::find($id);
+        if (!$menu) {
+            return [
+                'status' => false,
+                'message' => 'Menu not found'
+            ];
+        }
+        $menu->delete();
+        return [
+            'status' => true,
+            'message' => 'Menu deleted successfully'
+        ];
+    }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy($id) {}
 }
