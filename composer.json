@@ -30,6 +30,7 @@
             "Modules\\User\\Database\\Factories\\": "Modules/User/database/factories/",
             "Modules\\User\\Database\\Seeders\\": "Modules/User/database/seeders/",
             "Modules\\Menu\\": "Modules/Menu/app/",
+            "Modules\\Menu\\GraphQL\\": "Modules/Menu/GraphQL/",
             "Modules\\Menu\\Database\\Factories\\": "Modules/Menu/database/factories/",
             "Modules\\Menu\\Database\\Seeders\\": "Modules/Menu/database/seeders/"
         }

@@ -1,0 +1,3 @@
+#import Schema/Queries/User.graphql
+#import Schema/Mutations/User.graphql
+#import Schema/Components/User.graphql

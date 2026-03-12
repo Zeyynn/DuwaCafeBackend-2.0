@@ -1,16 +1,44 @@
 extend type Mutation {
-    createMenu(input: CreateMenuInput!): Menu!
-    @field(resolver: "Modules\\Menu\\GraphQL\\Resolvers\\MenuMutator@createMenu")
-    updateMenu(menu_id: ID!, input: UpdateMenuInput!): Menu!
-    @field(resolver: "Modules\\Menu\\GraphQL\\Resolvers\\MenuMutator@updateMenu")
-    deleteMenu(menu_id: ID!): Boolean!
-    @field(resolver: "Modules\\Menu\\GraphQL\\Resolvers\\MenuMutator@deleteMenu")
+    createMenu(input: CreateMenuInput @spread): SuccessResponse!
+    @field(resolver: "Modules\\Menu\\GraphQL\\Mutations\\MenuMutator@createMenu")
+    updateMenu(menu_id: ID!, input: UpdateMenuInput @spread): SuccessResponse!
+    @field(resolver: "Modules\\Menu\\GraphQL\\Mutations\\MenuMutator@updateMenu")
+    deleteMenu(menu_id: ID!): SuccessResponse!
+    @field(resolver: "Modules\\Menu\\GraphQL\\Mutations\\MenuMutator@deleteMenu")
 }
 
 input CreateMenuInput {
     menu_name: String!
     menu_slug: String!
-    menu_description: String!
+    menu_type: MenuType!
+    menu_description: String
     menu_price_cents: Float!
+    menu_status: MenuStatus
     menu_image: String
+}
+
+input UpdateMenuInput {
+    menu_name: String
+    menu_slug: String
+    menu_description: String
+    menu_price_cents: Float
+    menu_image: String
+}
+
+enum MenuType {
+    ALLDAY
+    TOAST
+    BITES
+    PIZZA
+    PASTA
+    ETCETERA
+    SOUP
+    ESPRESSO
+    FRAPPE
+    NONCOFFEE
+}
+
+enum MenuStatus {
+    ACTIVE
+    INACTIVE
 }

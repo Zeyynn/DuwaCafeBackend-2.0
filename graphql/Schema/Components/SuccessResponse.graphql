@@ -1,0 +1,12 @@
+type SuccessResponse {
+    status: Boolean!
+    message: String
+    data: Json
+    error: Json
+}
+
+type UrlResponse {
+    status: Boolean!
+    message: String
+    url: String
+}

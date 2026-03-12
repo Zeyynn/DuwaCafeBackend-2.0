@@ -1,0 +1,3 @@
+#import Schema/Queries/Menu.graphql
+#import Schema/Mutations/Menu.graphql
+#import Schema/Components/Menu.graphql

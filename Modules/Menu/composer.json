@@ -18,6 +18,7 @@
     "autoload": {
         "psr-4": {
             "Modules\\Menu\\": "app/",
+            "Modules\\Menu\\GraphQL\\": "GraphQL/",
             "Modules\\Menu\\Database\\Factories\\": "database/factories/",
             "Modules\\Menu\\Database\\Seeders\\": "database/seeders/"
         }
