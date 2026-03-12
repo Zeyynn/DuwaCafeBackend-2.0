@@ -11,4 +11,8 @@ enum MenuType: string
     case Pasta = 'pasta';
     case EtCetera = 'etcetera';
     case Soup = 'soup';
+    case Espresso = 'espresso';
+    case Frappe = 'frappe';
+    case NonCoffee = 'non-coffee';
+
 }

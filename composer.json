@@ -31,8 +31,7 @@
             "Modules\\User\\Database\\Seeders\\": "Modules/User/database/seeders/",
             "Modules\\Menu\\": "Modules/Menu/app/",
             "Modules\\Menu\\Database\\Factories\\": "Modules/Menu/database/factories/",
-            "Modules\\Menu\\Database\\Seeders\\": "Modules/Menu/database/seeders/",
-             "Illuminate\\Foundation\\Exceptions\\Renderer\\": "vendor/laravel/framework/src/Illuminate/Foundation/resources/exceptions/renderer/"
+            "Modules\\Menu\\Database\\Seeders\\": "Modules/Menu/database/seeders/"
         }
     },
     "autoload-dev": {

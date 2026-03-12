@@ -4,6 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Modules\Menu\Providers\Enums\MenuType;
+use Modules\Menu\Providers\Enums\MenuStatus;
 
 return new class extends Migration
 {
@@ -19,6 +20,7 @@ return new class extends Migration
             $table->String('menu_slug')->unique();
             $table->String('menu_description');
             $table->decimal('menu_price_cents');
+            $table->enum('menu_status', array_column(MenuStatus::cases(), 'value'))->default(MenuStatus::INACTIVE->value);
             $table->string('menu_image')->nullable();
             $table->timestamps();
         });
