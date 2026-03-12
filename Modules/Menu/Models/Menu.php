@@ -10,9 +10,11 @@ class Menu extends Model
     protected $primaryKey = 'menu_id';
     protected $fillable = [
         'menu_name',
+        'menu_type',
         'menu_slug',
         'menu_description',
         'menu_price_cents',
+        'menu_status',
         'menu_image',
     ];
 

@@ -1,5 +1,6 @@
 {
     "Menu": true,
     "User": true,
-    "Drink": true
+    "Drink": true,
+    "Cart": true
 }

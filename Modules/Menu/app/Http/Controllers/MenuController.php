@@ -22,7 +22,7 @@ class MenuController extends Controller
 
     public function show($id, array $args)
     {
-        return Menu::find($args['menu_id']);
+    return Menu::find($args['menu_id']);
     }
 
     public function create(CreateMenuRequest $request)

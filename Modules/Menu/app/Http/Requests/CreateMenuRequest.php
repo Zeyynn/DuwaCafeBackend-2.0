@@ -4,6 +4,8 @@ namespace Modules\Menu\Http\Requests;
 
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rules\Enum;
+use Modules\Menu\Providers\Enums\MenuStatus;
 
 class CreateMenuRequest extends FormRequest
 {
@@ -12,7 +14,7 @@ class CreateMenuRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -25,11 +27,18 @@ class CreateMenuRequest extends FormRequest
         return [
             'menu_name' => 'required|string|max:255',
             'menu_type' => 'required|string|max:255',
-            'menu_slug' => 'required|string|max:255|unique:menus,menu_slug',
+            'menu_slug' => 'required|string|max:255|unique:menu,menu_slug',
             'menu_description' => 'nullable|string',
             'menu_price_cents' => 'required|integer|min:0',
-            'menu_status' => 'required|boolean',
+            'menu_status' => ['required', 'string', new Enum(MenuStatus::class)],
             'menu_image' => 'nullable|string|max:255',
         ];
+    }
+
+    protected function prepareForValidation(): void
+    {
+        if ($this->has('menu_status')) {
+            $this->merge(['menu_status' => strtolower($this->menu_status)]);
+        }
     }
 }
