@@ -24,9 +24,11 @@ class UpdateMenuRequest extends FormRequest
     {
         return [
             'menu_name' => 'sometimes|required|string|max:255',
+            'menu_type' => 'sometimes|required|string|max:255',
             'menu_slug' => 'sometimes|required|string|max:255|unique:menus,menu_slug,' . $this->route('id'),
             'menu_description' => 'nullable|string',
             'menu_price_cents' => 'sometimes|required|integer|min:0',
+            'menu_status' => 'sometimes|required|boolean',
             'menu_image' => 'nullable|string|max:255',
         ];
     }

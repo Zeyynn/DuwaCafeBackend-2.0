@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Menu\app\Http\Requests;
+namespace Modules\Menu\Http\Requests;
 
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
@@ -24,9 +24,11 @@ class CreateMenuRequest extends FormRequest
     {
         return [
             'menu_name' => 'required|string|max:255',
+            'menu_type' => 'required|string|max:255',
             'menu_slug' => 'required|string|max:255|unique:menus,menu_slug',
             'menu_description' => 'nullable|string',
             'menu_price_cents' => 'required|integer|min:0',
+            'menu_status' => 'required|boolean',
             'menu_image' => 'nullable|string|max:255',
         ];
     }
