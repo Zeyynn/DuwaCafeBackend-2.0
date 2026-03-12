@@ -1,14 +1,14 @@
 <?php
 
-namespace App;
+namespace Modules\Menu\Providers\Enums;
 
 enum MenuType: string
 {
-    case MainCourse = 'main_course';
-    case Appetizer = 'appetizer';
-    case Dessert = 'dessert';
-    case Coffee = 'coffee';
-    case Tea = 'tea';
-    case Juice = 'juice';
-    
+    case AllDay = 'all_day';
+    case Toast = 'toast';
+    case Bites = 'bites';
+    case Pizza = 'pizza';
+    case Pasta = 'pasta';
+    case EtCetera = 'etcetera';
+    case Soup = 'soup';
 }
