@@ -1,0 +1,10 @@
+extend type Query {
+    cartListing:(input: CartListingInput! @paginate): [Cart!]!
+    @field(resolver: "Modules\\Cart\\GraphQL\\Queries\\CartQuery@cartListing")
+    cartDetails(cartId: ID!): Cart!
+    @field(resolver: "Modules\\Cart\\GraphQL\\Queries\\CartQuery@cartDetails")
+}
+
+input CartListingInput {
+    userId: ID!
+}

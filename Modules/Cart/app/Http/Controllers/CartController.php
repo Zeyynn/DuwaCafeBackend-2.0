@@ -4,53 +4,42 @@ namespace Modules\Cart\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Modules\Cart\Models\Cart;
 
 class CartController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function cartListing(Request $request)
     {
-        return view('cart::index');
+        $input = $request->all();
+        $user = auth()->user();
+
+        return Cart::where('user_id', $user->id)->get();
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function cartDetails($id)
     {
-        return view('cart::create');
+        $user = auth()->user();
+        return Cart::where('id', $id)->where('user_id', $user->id)->firstOrFail();
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request) {}
-
-    /**
-     * Show the specified resource.
-     */
-    public function show($id)
+     public function cartDropdown(Request $request)
     {
-        return view('cart::show');
+        $user = auth()->user();
+        return Cart::where('user_id', $user->id)->get();
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit($id)
+    public function addToCart(Request $request) 
     {
-        return view('cart::edit');
+        // Logic to add item to cart
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, $id) {}
+    public function updateCartItem(Request $request, $id)
+    {
+        // Logic to update cart item
+    }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy($id) {}
+    public function deleteCartItem($id)
+    {
+        // Logic to delete cart item
+    }
 }

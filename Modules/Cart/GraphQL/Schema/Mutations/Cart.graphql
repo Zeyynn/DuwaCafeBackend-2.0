@@ -1,0 +1,22 @@
+extend type Mutation {
+    addToCart(input: AddToCartInput!): SuccessResponse!
+    @field(resolver: "Modules\\Cart\\GraphQL\\Mutations\\CartMutation@addToCart")
+    removeFromCart(input: RemoveFromCartInput!): SuccessResponse!
+    @field(resolver: "Modules\\Cart\\GraphQL\\Mutations\\CartMutation@removeFromCart")
+    updateCartItem(input: UpdateCartItemInput!): SuccessResponse!
+    @field(resolver: "Modules\\Cart\\GraphQL\\Mutations\\CartMutation@updateCartItem")
+}
+
+input AddToCartInput {
+    menuItemId: ID!
+    quantity: Int!
+}
+
+input UpdateCartItemInput {
+    menuItemId: ID!
+    quantity: Int!
+}
+
+input RemoveFromCartInput {
+    menuItemId: ID!
+}

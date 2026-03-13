@@ -1,0 +1,10 @@
+type Cart {
+    cart_id: ID!
+    user_id: ID!
+    quantity: Int!
+    created_at: DateTime!
+    updated_at: DateTime!
+    menu: Menu!
+    user: User!
+    total_price: Float!
+}
