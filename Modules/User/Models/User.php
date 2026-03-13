@@ -7,6 +7,8 @@ use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Modules\Cart\Models\Cart;
+use Modules\Menu\Models\Menu;
 
 class User extends Authenticatable
 {
@@ -45,5 +47,13 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function carts() {
+        return $this->hasMany(Cart::class, 'user_id', 'id');
+    }
+
+    public function menus() {
+        return $this->hasManyThrough(Menu::class, Cart::class, 'user_id', 'menu_id', 'id', 'menu_id');
     }
 }

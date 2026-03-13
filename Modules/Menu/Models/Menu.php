@@ -3,6 +3,7 @@
 namespace Modules\Menu\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Modules\Cart\Models\Cart;
 
 class Menu extends Model
 {
@@ -21,5 +22,10 @@ class Menu extends Model
     public function getMenuPriceAttribute(): float
     {
         return $this->menu_price_cents / 100;
+    }
+
+    public function carts()
+    {
+        return $this->hasMany(Cart::class, 'menu_id', 'menu_id');
     }
 }
