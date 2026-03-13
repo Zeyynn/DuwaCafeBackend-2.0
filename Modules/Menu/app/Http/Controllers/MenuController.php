@@ -20,7 +20,7 @@ class MenuController extends Controller
             ->get();
     }
 
-    public function show($id, array $args)
+    public function detail($id, array $args)
     {
     return Menu::find($args['menu_id']);
     }

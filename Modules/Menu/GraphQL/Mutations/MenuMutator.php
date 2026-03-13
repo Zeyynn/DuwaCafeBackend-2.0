@@ -3,20 +3,28 @@
 namespace Modules\Menu\GraphQL\Mutations;
 
 use Modules\Menu\Models\Menu;
+use app\GraphQL\Mutations\Mutator;
+use GraphQL\Type\Definition\ResolveInfo;
+use Nuwave\Lighthouse\Support\Contracts\GraphQLContext;
+use Modules\Menu\Http\Controllers\MenuController;
 
-class MenuMutator
+class MenuMutator extends Mutator
 
 {
-    public function createMenu($root, array $args)
+    protected $controller = MenuController::class;
+
+    public function create($root, array $args, GraphQLContext $context, ResolveInfo $resolveInfo)
     {
-        return app()->call('Modules\Menu\Http\Controllers\MenuController@create', [request()->merge($args + ['action' => 'create'])]);
+        return $this->resolve(__FUNCTION__, $args, $context);
     }
-    public function updateMenu($root, array $args)
+
+    public function update($root, array $args, GraphQLContext $context, ResolveInfo $resolveInfo)
     {
-        return app()->call('Modules\Menu\Http\Controllers\MenuController@update', [request()->merge($args + ['action' => 'update'])]);
+        return $this->resolve(__FUNCTION__, $args, $context);
     }
-    public function deleteMenu($root, array $args)
+
+    public function delete($root, array $args, GraphQLContext $context, ResolveInfo $resolveInfo)
     {
-        return app()->call('Modules\Menu\Http\Controllers\MenuController@delete', [request()->merge($args + ['action' => 'delete'])]);
+        return $this->resolve(__FUNCTION__, $args, $context);
     }
 }

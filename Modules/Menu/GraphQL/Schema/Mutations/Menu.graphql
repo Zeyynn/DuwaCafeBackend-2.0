@@ -1,10 +1,10 @@
 extend type Mutation {
     createMenu(input: CreateMenuInput @spread): SuccessResponse!
-    @field(resolver: "Modules\\Menu\\GraphQL\\Mutations\\MenuMutator@createMenu")
+    @field(resolver: "Modules\\Menu\\GraphQL\\Mutations\\MenuMutator@create")
     updateMenu(menu_id: ID!, input: UpdateMenuInput @spread): SuccessResponse!
-    @field(resolver: "Modules\\Menu\\GraphQL\\Mutations\\MenuMutator@updateMenu")
+    @field(resolver: "Modules\\Menu\\GraphQL\\Mutations\\MenuMutator@update")
     deleteMenu(menu_id: ID!): SuccessResponse!
-    @field(resolver: "Modules\\Menu\\GraphQL\\Mutations\\MenuMutator@deleteMenu")
+    @field(resolver: "Modules\\Menu\\GraphQL\\Mutations\\MenuMutator@delete")
 }
 
 input CreateMenuInput {
