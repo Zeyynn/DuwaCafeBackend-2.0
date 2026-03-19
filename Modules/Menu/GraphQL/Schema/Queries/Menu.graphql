@@ -6,7 +6,5 @@ extend type Query {
 }
 
 input MenuListingInput {
-    page: Int
-    limit: Int
-    search: String
+    keyword: String
 }

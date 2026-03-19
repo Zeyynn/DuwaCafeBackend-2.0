@@ -13,9 +13,11 @@ class MenuController extends Controller
 
     public function listing($_, array $args)
     {   
+        $input = $args['input'] ?? [];
+        
         return Menu::query()
-            ->when(isset($args['menu_name']), function ($query) use ($args) {
-                $query->where('menu_name', 'like', '%' . $args['menu_name'] . '%');
+            ->when(isset($args['keyword']), function ($query) use ($input) {
+                $query->where('menu_name', 'like', '%' . $input['keyword'] . '%');
             })
             ->get();
     }
