@@ -5,7 +5,7 @@ namespace Modules\Cart\GraphQL\Mutations;
 use GraphQL\Type\Definition\ResolveInfo;
 use Nuwave\Lighthouse\Support\Contracts\GraphQLContext;
 use Modules\Cart\Http\Controllers\CartController;
-use app\GraphQL\Mutations\Mutator;
+use App\GraphQL\Mutations\Mutator;
 
 class CartMutator extends Mutator
 {

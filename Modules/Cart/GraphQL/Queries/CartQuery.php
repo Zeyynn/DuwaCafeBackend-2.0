@@ -1,11 +1,11 @@
 <?php
 
-namespace Modules\Cart\GraphQL\Queries;;
+namespace Modules\Cart\GraphQL\Queries;
 
 use GraphQL\Type\Definition\ResolveInfo;
 use Nuwave\Lighthouse\Support\Contracts\GraphQLContext;
 use Modules\Cart\Http\Controllers\CartController;
-use app\GraphQL\Mutations\Mutator;
+use App\GraphQL\Mutations\Mutator;
 
 class CartQuery extends Mutator
 {
