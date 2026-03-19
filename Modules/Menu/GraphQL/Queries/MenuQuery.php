@@ -8,11 +8,11 @@ class MenuQuery
 {
     public function menuListing($root ,array $args)
     {
-        return app()->call('Modules\Menu\Http\Controllers\MenuController@listing', [request()->merge($args + ['action' => 'index'])]);
+        return app()->call('Modules\Menu\Http\Controllers\MenuController@listing', ['_' => null, 'args' => $args]);
     }
 
     public function menuDetails($root, array $args)
     {
-        return app()->call('Modules\Menu\Http\Controllers\MenuController@details', [request()->merge($args + ['action' => 'show'])]);
+        return app()->call('Modules\Menu\Http\Controllers\MenuController@detail', ['_' => null, 'args' => $args]);
     }
 }

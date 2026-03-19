@@ -11,7 +11,7 @@ use Modules\Menu\Http\Requests\UpdateMenuRequest;
 class MenuController extends Controller
 {
 
-    public function listing(array $args)
+    public function listing($_, array $args)
     {   
         return Menu::query()
             ->when(isset($args['menu_name']), function ($query) use ($args) {
@@ -20,7 +20,7 @@ class MenuController extends Controller
             ->get();
     }
 
-    public function detail($id, array $args)
+    public function detail($_, array $args)
     {
     return Menu::find($args['menu_id']);
     }

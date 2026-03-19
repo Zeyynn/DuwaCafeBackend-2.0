@@ -1,8 +1,8 @@
 type Menu {
     menu_id: ID!
-    menu_name: String!
-    menu_slug: String!
-    menu_description: String!
-    menu_price_cents: Float!
+    menu_name: String
+    menu_slug: String
+    menu_description: String
+    menu_price_cents: Float
     menu_image: String
 }

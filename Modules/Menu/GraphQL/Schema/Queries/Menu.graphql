@@ -1,5 +1,5 @@
 extend type Query {
-    menuListing(input: MenuListingInput!): [Menu!]!
+    menuListing(input: MenuListingInput): [Menu]
     @field(resolver: "Modules\\Menu\\GraphQL\\Queries\\MenuQuery@menuListing")
     menuDetails(menu_id: ID!): Menu
     @field(resolver: "Modules\\Menu\\GraphQL\\Queries\\MenuQuery@menuDetails")
