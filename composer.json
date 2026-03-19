@@ -27,6 +27,8 @@
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/",
             "Modules\\User\\": "Modules/User/app/",
+            "Modules\\User\\Models\\": "Modules/User/Models/",
+            "Modules\\User\\GraphQL\\": "Modules/User/GraphQL/",
             "Modules\\User\\Database\\Factories\\": "Modules/User/database/factories/",
             "Modules\\User\\Database\\Seeders\\": "Modules/User/database/seeders/",
             "Modules\\Menu\\": "Modules/Menu/app/",
