@@ -19,6 +19,16 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        $moduleNamespaces = array_map(
+            fn(string $dir) => 'Modules\\' . basename($dir) . '\\Models',
+            glob(base_path('Modules/*'), GLOB_ONLYDIR) ?: []
+        );
+
+        config([
+            'lighthouse.namespaces.models' => array_merge(
+                (array) config('lighthouse.namespaces.models'),
+                $moduleNamespaces
+            )
+        ]);
     }
 }
