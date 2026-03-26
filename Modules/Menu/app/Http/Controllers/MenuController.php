@@ -12,19 +12,21 @@ class MenuController extends Controller
 {
 
     public function listing($_, array $args)
-    {   
+    {
         $input = $args['input'] ?? [];
-        
+
         return Menu::query()
-            ->when(isset($args['keyword']), function ($query) use ($input) {
-                $query->where('menu_name', 'like', '%' . $input['keyword'] . '%');
+            ->when(isset($input['keyword']), function ($query) use ($input) {
+                $query->where('menu_name', 'like', '%' . $input['keyword'] . '%')
+                ->orWhere('menu_type', 'like', '%' . $input['keyword'] . '%');
+
             })
             ->get();
     }
 
     public function detail($_, array $args)
     {
-    return Menu::find($args['menu_id']);
+        return Menu::find($args['menu_id']);
     }
 
     public function create(CreateMenuRequest $request)
@@ -41,10 +43,10 @@ class MenuController extends Controller
     {
         $menu = Menu::find($id);
         if (!$menu) {
-            return[
+            return [
                 'status' => false,
                 'message' => 'Menu not found'
-            ];  
+            ];
         }
         $menu->update($request->validated());
         return [
