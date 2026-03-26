@@ -1,0 +1,23 @@
+extend type Mutation {
+    register(input: RegisterInput @spread): SuccessResponse!
+    @field(resolver: "Modules\\User\\GraphQL\\Mutations\\UserMutator@register")
+    login(input: LoginInput @spread): AuthPayload!
+    @field(resolver: "Modules\\User\\GraphQL\\Mutations\\UserMutator@login")
+}
+
+input RegisterInput {
+    name: String!
+    email: String!
+    password: String!
+    password_confirmation: String!
+}
+
+input LoginInput {
+    email: String!
+    password: String!
+}
+
+type AuthPayload {
+    token: String!
+    user: User!
+}

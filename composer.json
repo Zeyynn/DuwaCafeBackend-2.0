@@ -40,7 +40,12 @@
             "Modules\\Cart\\Models\\": "Modules/Cart/Models/",
             "Modules\\Cart\\GraphQL\\": "Modules/Cart/GraphQL/",
             "Modules\\Cart\\Database\\Factories\\": "Modules/Cart/database/factories/",
-            "Modules\\Cart\\Database\\Seeders\\": "Modules/Cart/database/seeders/"
+            "Modules\\Cart\\Database\\Seeders\\": "Modules/Cart/database/seeders/",
+            "Modules\\User\\": "Modules/User/app/",
+            "Modules\\User\\Models\\": "Modules/User/Models/",
+            "Modules\\User\\GraphQL\\": "Modules/User/GraphQL/",
+            "Modules\\User\\Database\\Factories\\": "Modules/User/database/factories/",
+            "Modules\\User\\Database\\Seeders\\": "Modules/User/database/seeders/"
         }
     },
     "autoload-dev": {
