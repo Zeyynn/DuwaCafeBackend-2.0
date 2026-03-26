@@ -19,7 +19,6 @@ class MenuController extends Controller
             ->when(isset($input['keyword']), function ($query) use ($input) {
                 $query->where('menu_name', 'like', '%' . $input['keyword'] . '%')
                 ->orWhere('menu_type', 'like', '%' . $input['keyword'] . '%');
-
             })
             ->get();
     }

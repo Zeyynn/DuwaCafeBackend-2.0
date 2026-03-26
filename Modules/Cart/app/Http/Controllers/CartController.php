@@ -5,6 +5,8 @@ namespace Modules\Cart\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Modules\Cart\Models\Cart;
+use Modules\Menu\Models\Menu;
+use Illuminate\Support\Str;
 
 class CartController extends Controller
 {
@@ -30,7 +32,19 @@ class CartController extends Controller
 
     public function addToCart(Request $request) 
     {
-        // Logic to add item to cart
+        $user = auth()->user();
+        $menu = Menu::findOrFail($request->menu_id);
+
+        $cart = Cart::firstOrCreate(
+            ['user_id' => $user->id, 'cart_status' => 'active'],
+            ['cart_id' => Str::uuid()]
+        );
+
+        $cart->items()->create([
+            'menu_id' => $menu->id,
+            'quantity' => $request->quantity,
+            'price' => $menu->price,
+        ]);
     }
 
     public function updateCartItem(Request $request, $id)

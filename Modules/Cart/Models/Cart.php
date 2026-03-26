@@ -11,17 +11,7 @@ class Cart extends Model
 
     protected $fillable = [
         'user_id',
-        'menu_id',
-        'quantity',
+        'cart_id',
+        'cart_status',
     ];
-
-    public function menu()
-    {
-        return $this->belongsTo(Menu::class, 'menu_id', 'menu_id');
-    }
-
-    public function getTotalPriceAttribute(): float
-    {
-        return $this->quantity * $this->menu->menu_price;
-    }
 }

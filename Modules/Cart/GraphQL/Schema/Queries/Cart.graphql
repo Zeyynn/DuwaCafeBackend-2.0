@@ -1,5 +1,5 @@
 extend type Query {
-    cartListing:(input: CartListingInput! @paginate): [Cart!]!
+    cartListing(input: CartListingInput): [Cart]
     @field(resolver: "Modules\\Cart\\GraphQL\\Queries\\CartQuery@cartListing")
     cartDetails(cartId: ID!): Cart!
     @field(resolver: "Modules\\Cart\\GraphQL\\Queries\\CartQuery@cartDetails")
