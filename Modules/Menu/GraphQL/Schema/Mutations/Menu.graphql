@@ -18,6 +18,7 @@ input CreateMenuInput {
 }
 
 input UpdateMenuInput {
+    menu_id: ID!
     menu_name: String
     menu_slug: String
     menu_description: String

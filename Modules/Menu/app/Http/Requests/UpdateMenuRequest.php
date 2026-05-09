@@ -4,6 +4,7 @@ namespace Modules\Menu\Http\Requests;
 
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
+use Modules\Menu\Providers\Enums\MenuStatus;
 
 class UpdateMenuRequest extends FormRequest
 {
@@ -12,7 +13,7 @@ class UpdateMenuRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,12 +24,13 @@ class UpdateMenuRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'menu_id' => 'required|integer|exists:menu,menu_id',
             'menu_name' => 'sometimes|required|string|max:255',
             'menu_type' => 'sometimes|required|string|max:255',
             'menu_slug' => 'sometimes|required|string|max:255|unique:menus,menu_slug,' . $this->route('id'),
             'menu_description' => 'nullable|string',
             'menu_price_cents' => 'sometimes|required|integer|min:0',
-            'menu_status' => 'sometimes|required|boolean',
+            'menu_status' => 'sometimes|required|string|in:' . implode(',', array_column(MenuStatus::cases(), 'value')),
             'menu_image' => 'nullable|string|max:255',
         ];
     }

@@ -4,6 +4,7 @@ namespace Modules\Menu\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Modules\Menu\Models\Menu;
 use Modules\Menu\Http\Requests\CreateMenuRequest;
 use Modules\Menu\Http\Requests\UpdateMenuRequest;
@@ -18,7 +19,7 @@ class MenuController extends Controller
         return Menu::query()
             ->when(isset($input['keyword']), function ($query) use ($input) {
                 $query->where('menu_name', 'like', '%' . $input['keyword'] . '%')
-                ->orWhere('menu_type', 'like', '%' . $input['keyword'] . '%');
+                    ->orWhere('menu_type', 'like', '%' . $input['keyword'] . '%');
             })
             ->get();
     }
@@ -30,45 +31,71 @@ class MenuController extends Controller
 
     public function create(CreateMenuRequest $request)
     {
-        $menu = Menu::create($request->validated());
+        $input = $request->validated();
+
+        try {
+            $data = Menu::create([
+                'menu_name' => $input['menu_name'],
+                'menu_slug' => $input['menu_slug'],
+                'menu_type' => $input['menu_type'],
+                'menu_description' => $input['menu_description'] ?? null,
+                'menu_price_cents' => $input['menu_price_cents'],
+            ]);
+        } catch (\Exception $e) {
+            return [
+                'status' => false,
+                'message' => $e->getMessage()
+            ];
+        }
+
         return [
             'status' => true,
             'message' => 'Menu created successfully',
-            'data' => $menu
+            'data' => $data
         ];
     }
 
     public function update(UpdateMenuRequest $request, $id)
     {
-        $menu = Menu::find($id);
-        if (!$menu) {
-            return [
-                'status' => false,
-                'message' => 'Menu not found'
-            ];
+        $input = $request->validated();
+        try {
+            DB::beginTransaction();
+            $data = Menu::find($id);
+            if (!$data) {
+                throw new \Exception('Menu not found');
+            }
+
+            $data->update($input);
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollBack();
+            throw $e;
         }
-        $menu->update($request->validated());
+
         return [
             'status' => true,
             'message' => 'Menu updated successfully',
-            'data' => $menu
+            'data' => $data
         ];
     }
 
     public function delete($id)
     {
-        $menu = Menu::find($id);
-        if (!$menu) {
-            return [
-                'status' => false,
-                'message' => 'Menu not found'
-            ];
+        try {
+            DB::beginTransaction();
+            $data = Menu::find($id);
+            if (!$data) {
+                throw new \Exception('Menu not found');
+            }
+            $data->delete();
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollBack();
+            throw $e;
         }
-        $menu->delete();
         return [
             'status' => true,
             'message' => 'Menu deleted successfully'
         ];
     }
-
 }
