@@ -3,31 +3,41 @@
 namespace Modules\User\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
+use Modules\User\Http\Requests\LoginRequest;
+use Modules\User\Http\Requests\RegisterRequest;
 use Modules\User\Models\User;
 
 class UserController extends Controller
 {
-    public function register(Request $request)
+    public function register(RegisterRequest $request): array
     {
+        $input = $request->validated();
+
         $user = User::create([
-            'name' => $request->input('name'),
-            'email' => $request->input('email'),
-            'password' => bcrypt($request->input('password')),
+            'name' => $input['name'],
+            'email' => $input['email'],
+            'password' => $input['password'],
+            'phone_code' => $input['phone_code'],
+            'phone_number' => $input['phone_number'],
+            'email_verified_at' => null,
+            'points' => 0,
         ]);
 
-        $token = $user->createToken('auth_token')->plainTextToken;
-
         return [
-            'token' => $token,
-            'user' => $user, 
+            'status' => true,
+            'message' => "Registered Succesfully!",
         ];
     }
 
-    public function login(Request $request)
+    public function login(LoginRequest $request): array
     {
-        if (!auth()->attempt($request->only('email', 'password'))) {
-            return response()->json(['message' => 'Invalid credentials'], 401);
+        $credentials = $request->validated();
+
+        if (!auth()->attempt($credentials)) {
+            throw ValidationException::withMessages([
+                'email' => ['Invalid credentials'],
+            ]);
         }
 
         $user = auth()->user();
@@ -35,8 +45,7 @@ class UserController extends Controller
 
         return [
             'token' => $token,
-            'user' => $user,
+            'token_type' => "Bearer"
         ];
-
     }
 }

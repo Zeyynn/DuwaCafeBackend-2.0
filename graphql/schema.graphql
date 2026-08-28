@@ -6,4 +6,3 @@ type Mutation
 
 #import Schema/Components/SuccessResponse.graphql
 #import ../Modules/*/GraphQL/Schema.graphql
-
