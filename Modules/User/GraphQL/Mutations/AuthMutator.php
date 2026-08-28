@@ -2,16 +2,14 @@
 
 namespace Modules\User\GraphQL\Mutations;
 
-use Modules\User\Models\User;
 use App\GraphQL\Mutations\Mutator;
 use GraphQL\Type\Definition\ResolveInfo;
 use Nuwave\Lighthouse\Support\Contracts\GraphQLContext;
-use Modules\User\Http\Controllers\UserController;
+use Modules\User\Http\Controllers\AuthController;
 
-class UserMutator extends Mutator
-
+class AuthMutator extends Mutator
 {
-    protected $controller = UserController::class;
+    protected $controller = AuthController::class;
 
     public function register($root, array $args, GraphQLContext $context, ResolveInfo $resolveInfo)
     {

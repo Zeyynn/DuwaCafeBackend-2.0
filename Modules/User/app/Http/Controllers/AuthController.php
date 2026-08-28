@@ -10,7 +10,7 @@ use Modules\User\Http\Requests\VerifyCodeRequest;
 use Modules\User\Models\User;
 use Modules\User\Models\VerificationCode;
 
-class UserController extends Controller
+class AuthController extends Controller
 {
     public function register(RegisterRequest $request): array
     {

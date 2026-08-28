@@ -1,25 +1,25 @@
 extend type Mutation {
     register(input: RegisterInput @spread): SuccessResponse!
         @field(
-            resolver: "Modules\\User\\GraphQL\\Mutations\\UserMutator@register"
+            resolver: "Modules\\User\\GraphQL\\Mutations\\AuthMutator@register"
         )
     login(input: LoginInput @spread): AuthPayload!
-        @field(resolver: "Modules\\User\\GraphQL\\Mutations\\UserMutator@login")
+        @field(resolver: "Modules\\User\\GraphQL\\Mutations\\AuthMutator@login")
     sendEmailVerification: SuccessResponse!
         @field(
-            resolver: "Modules\\User\\GraphQL\\Mutations\\UserMutator@sendEmailVerification"
+            resolver: "Modules\\User\\GraphQL\\Mutations\\AuthMutator@sendEmailVerification"
         )
     sendPhoneVerification: SuccessResponse!
         @field(
-            resolver: "Modules\\User\\GraphQL\\Mutations\\UserMutator@sendPhoneVerification"
+            resolver: "Modules\\User\\GraphQL\\Mutations\\AuthMutator@sendPhoneVerification"
         )
     verifyEmail(input: VerifyCodeInput @spread): SuccessResponse!
         @field(
-            resolver: "Modules\\User\\GraphQL\\Mutations\\UserMutator@verifyEmail"
+            resolver: "Modules\\User\\GraphQL\\Mutations\\AuthMutator@verifyEmail"
         )
     verifyPhone(input: VerifyCodeInput @spread): SuccessResponse!
         @field(
-            resolver: "Modules\\User\\GraphQL\\Mutations\\UserMutator@verifyPhone"
+            resolver: "Modules\\User\\GraphQL\\Mutations\\AuthMutator@verifyPhone"
         )
 }
 
