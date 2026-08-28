@@ -5,6 +5,22 @@ extend type Mutation {
         )
     login(input: LoginInput @spread): AuthPayload!
         @field(resolver: "Modules\\User\\GraphQL\\Mutations\\UserMutator@login")
+    sendEmailVerification: SuccessResponse!
+        @field(
+            resolver: "Modules\\User\\GraphQL\\Mutations\\UserMutator@sendEmailVerification"
+        )
+    sendPhoneVerification: SuccessResponse!
+        @field(
+            resolver: "Modules\\User\\GraphQL\\Mutations\\UserMutator@sendPhoneVerification"
+        )
+    verifyEmail(input: VerifyCodeInput @spread): SuccessResponse!
+        @field(
+            resolver: "Modules\\User\\GraphQL\\Mutations\\UserMutator@verifyEmail"
+        )
+    verifyPhone(input: VerifyCodeInput @spread): SuccessResponse!
+        @field(
+            resolver: "Modules\\User\\GraphQL\\Mutations\\UserMutator@verifyPhone"
+        )
 }
 
 input RegisterInput {
@@ -19,6 +35,10 @@ input RegisterInput {
 input LoginInput {
     email: String!
     password: String!
+}
+
+input VerifyCodeInput {
+    code: String!
 }
 
 type AuthPayload {

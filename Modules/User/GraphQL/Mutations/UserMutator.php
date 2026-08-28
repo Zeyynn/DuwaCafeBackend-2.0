@@ -22,4 +22,24 @@ class UserMutator extends Mutator
     {
         return $this->resolve(__FUNCTION__, $args, $context);
     }
+
+    public function sendEmailVerification($root, array $args, GraphQLContext $context, ResolveInfo $resolveInfo)
+    {
+        return $this->resolve(__FUNCTION__, $args, $context);
+    }
+
+    public function sendPhoneVerification($root, array $args, GraphQLContext $context, ResolveInfo $resolveInfo)
+    {
+        return $this->resolve(__FUNCTION__, $args, $context);
+    }
+
+    public function verifyEmail($root, array $args, GraphQLContext $context, ResolveInfo $resolveInfo)
+    {
+        return $this->resolve(__FUNCTION__, $args, $context);
+    }
+
+    public function verifyPhone($root, array $args, GraphQLContext $context, ResolveInfo $resolveInfo)
+    {
+        return $this->resolve(__FUNCTION__, $args, $context);
+    }
 }

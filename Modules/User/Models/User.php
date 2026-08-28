@@ -32,6 +32,7 @@ class User extends Authenticatable
     {
         return [
             'email_verified_at' => 'datetime',
+            'phone_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
     }
@@ -42,5 +43,9 @@ class User extends Authenticatable
 
     public function menus() {
         return $this->hasManyThrough(Menu::class, Cart::class, 'user_id', 'menu_id', 'id', 'menu_id');
+    }
+
+    public function verificationCodes() {
+        return $this->hasMany(VerificationCode::class);
     }
 }
