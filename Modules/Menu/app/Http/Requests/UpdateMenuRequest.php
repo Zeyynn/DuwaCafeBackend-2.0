@@ -31,7 +31,7 @@ class UpdateMenuRequest extends FormRequest
             'menu_description' => 'nullable|string',
             'menu_price_cents' => 'sometimes|required|integer|min:0',
             'menu_status' => 'sometimes|required|string|in:' . implode(',', array_column(MenuStatus::cases(), 'value')),
-            'menu_image' => 'nullable|string|max:255',
+            'image' => 'nullable|file|image|max:5120',
         ];
     }
 }

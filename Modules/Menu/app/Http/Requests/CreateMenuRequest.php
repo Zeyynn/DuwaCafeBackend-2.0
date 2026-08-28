@@ -31,7 +31,7 @@ class CreateMenuRequest extends FormRequest
             'menu_description' => 'nullable|string',
             'menu_price_cents' => 'required|integer|min:0',
             'menu_status' => ['required', 'string', new Enum(MenuStatus::class)],
-            'menu_image' => 'nullable|string|max:255',
+            'image' => 'nullable|file|image|max:5120',
         ];
     }
 

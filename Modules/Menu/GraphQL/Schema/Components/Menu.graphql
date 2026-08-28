@@ -5,10 +5,6 @@ type Menu {
     menu_description: String
     menu_price_cents: Float
     menu_image: String
+    menu_image_thumb: String
     menu_type: MenuType
 }
-
-enum MenuType {
-    pasta
-    frappe
-} 

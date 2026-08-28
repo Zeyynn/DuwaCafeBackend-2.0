@@ -41,6 +41,10 @@ class MenuController extends Controller
                 'menu_description' => $input['menu_description'] ?? null,
                 'menu_price_cents' => $input['menu_price_cents'],
             ]);
+
+            if (! empty($input['image'])) {
+                $data->addMedia($input['image'])->toMediaCollection('menu_image');
+            }
         } catch (\Exception $e) {
             return [
                 'status' => false,
@@ -55,17 +59,22 @@ class MenuController extends Controller
         ];
     }
 
-    public function update(UpdateMenuRequest $request, $id)
+    public function update(UpdateMenuRequest $request)
     {
         $input = $request->validated();
         try {
             DB::beginTransaction();
-            $data = Menu::find($id);
+            $data = Menu::find($input['menu_id']);
             if (!$data) {
                 throw new \Exception('Menu not found');
             }
 
-            $data->update($input);
+            $data->update(collect($input)->except(['menu_id', 'image'])->all());
+
+            if (! empty($input['image'])) {
+                $data->addMedia($input['image'])->toMediaCollection('menu_image');
+            }
+
             DB::commit();
         } catch (\Exception $e) {
             DB::rollBack();
@@ -79,11 +88,11 @@ class MenuController extends Controller
         ];
     }
 
-    public function delete($id)
+    public function delete(Request $request)
     {
         try {
             DB::beginTransaction();
-            $data = Menu::find($id);
+            $data = Menu::find($request->menu_id);
             if (!$data) {
                 throw new \Exception('Menu not found');
             }

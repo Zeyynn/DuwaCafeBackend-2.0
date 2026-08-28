@@ -21,7 +21,6 @@ return new class extends Migration
             $table->String('menu_description')->nullable();
             $table->decimal('menu_price_cents');
             $table->enum('menu_status', array_column(MenuStatus::cases(), 'value'))->default(MenuStatus::INACTIVE->value);
-            $table->string('menu_image')->nullable();
             $table->timestamps();
         });
     }

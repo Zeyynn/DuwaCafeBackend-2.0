@@ -14,7 +14,7 @@ input CreateMenuInput {
     menu_description: String
     menu_price_cents: Float!
     menu_status: MenuStatus
-    menu_image: String
+    image: Upload
 }
 
 input UpdateMenuInput {
@@ -23,20 +23,20 @@ input UpdateMenuInput {
     menu_slug: String
     menu_description: String
     menu_price_cents: Float
-    menu_image: String
+    image: Upload
 }
 
 enum MenuType {
-    ALLDAY
-    TOAST
-    BITES
-    PIZZA
-    PASTA
-    ETCETERA
-    SOUP
-    ESPRESSO
-    FRAPPE
-    NONCOFFEE
+    ALLDAY @enum(value: "all_day")
+    TOAST @enum(value: "toast")
+    BITES @enum(value: "bites")
+    PIZZA @enum(value: "pizza")
+    PASTA @enum(value: "pasta")
+    ETCETERA @enum(value: "etcetera")
+    SOUP @enum(value: "soup")
+    ESPRESSO @enum(value: "espresso")
+    FRAPPE @enum(value: "frappe")
+    NONCOFFEE @enum(value: "non-coffee")
 }
 
 enum MenuStatus {
