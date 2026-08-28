@@ -3,7 +3,7 @@
 namespace Modules\Menu\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Modules\Cart\Models\Cart;
+use Modules\Cart\Models\CartMenu;
 
 class Menu extends Model
 {
@@ -26,6 +26,6 @@ class Menu extends Model
 
     public function carts()
     {
-        return $this->hasMany(Cart::class, 'menu_id', 'menu_id');
+        return $this->hasMany(CartMenu::class, 'menu_id', 'menu_id');
     }
 }

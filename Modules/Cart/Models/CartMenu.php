@@ -3,6 +3,7 @@
 namespace Modules\Cart\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Modules\Menu\Models\Menu;
 
 class CartMenu extends Model
 {
@@ -12,6 +13,7 @@ class CartMenu extends Model
         'cart_id',
         'menu_id',
         'quantity',
+        'price_cents',
     ];
 
     public function menu()
@@ -19,13 +21,18 @@ class CartMenu extends Model
         return $this->belongsTo(Menu::class, 'menu_id', 'menu_id');
     }
 
-    public function getTotalPriceAttribute(): float
-    {
-        return $this->quantity * $this->menu->menu_price;
-    }
-
     public function cart()
     {
         return $this->belongsTo(Cart::class, 'cart_id', 'cart_id');
+    }
+
+    public function getUserAttribute()
+    {
+        return $this->cart->user;
+    }
+
+    public function getTotalPriceAttribute(): float
+    {
+        return $this->quantity * ($this->price_cents / 100);
     }
 }
