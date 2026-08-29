@@ -12,7 +12,7 @@ class RemoveFromCartRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'menu_id' => ['required', 'integer'],
+            'id' => ['required', 'integer'],
         ];
     }
 

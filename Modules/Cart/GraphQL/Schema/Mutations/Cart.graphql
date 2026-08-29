@@ -13,10 +13,10 @@ input AddToCartInput {
 }
 
 input UpdateCartItemInput {
-    menu_id: Int!
+    id: Int!
     quantity: Int!
 }
 
 input RemoveFromCartInput {
-    menu_id: Int!
+    id: Int!
 }

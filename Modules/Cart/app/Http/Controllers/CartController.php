@@ -55,7 +55,7 @@ class CartController extends Controller
         return [
             'status' => true,
             'message' => 'Item added to cart.',
-            'cart' => $cart
+            'data' => $cart
         ];
     }
 
@@ -64,8 +64,12 @@ class CartController extends Controller
         $data = $request->validated();
 
         $cart = $this->activeCart($this->authenticatedUser());
-        $item = $cart->items()->where('menu_id', $data['menu_id'])->firstOrFail();
+        $item = $cart->items()->where('id', $data['id'])->firstOrFail();
         $item->update(['quantity' => $data['quantity']]);
+
+        if ($data['quantity'] == 0) {
+            $item->delete();
+        }
 
         return [
             'status' => true,
@@ -79,7 +83,7 @@ class CartController extends Controller
         $data = $request->validated();
 
         $cart = $this->activeCart($this->authenticatedUser());
-        $cart->items()->where('menu_id', $data['menu_id'])->delete();
+        $cart->items()->where('id', $data['id'])->delete();
 
         return [
             'status' => true,
